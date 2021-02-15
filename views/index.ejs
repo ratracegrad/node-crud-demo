@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mongo CRUD Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1>MongoDB CRUD Demo</h1>
+    <div class="container form">
+      <div>Create</div>
+      <form action="/users" method="POST">
+        <div class="entry">
+          <label for="fname">First Name</label>
+          <input type="text" placeholder="First Name" name="fname" />
+        </div>
+        <div class="entry">
+          <label for="lname">Last Name</label>
+          <input type="text" placeholder="Last Name" name="lname" />
+        </div>
+        <button class="button button-block" type="submit">Create</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="3"><div>Read</div></th>
+          </tr>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i < users.length; i++) { %>
+          <tr>
+            <td><%= users[i].fname %></td>
+            <td><%= users[i].lname %></td>
+            <td>
+              <button
+                class="button editButton"
+                data-fname="<%=  users[i].fname %>"
+                data-lname="<%= users[i].lname %>"
+              >
+                Edit
+              </button>
+              <button
+                class="button deleteButton"
+                data-fname="<%=  users[i].fname %>"
+                data-lname="<%= users[i].lname %>"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container form">
+        <div>Update</div>
+            <div class="entry">
+                <label for="oldFname">Old First Name</label>
+                <input type="text" name="oldFname" id="oldFname" readonly="true" />
+            </div>
+            <div class="entry">
+                <label for="oldLname">Old Last Name</label>
+                <input type="text" name="oldLname" id="oldLname" readonly="true" />
+            </div>
+            <div class="entry">
+                <label for="newFname">New First Name</label>
+                <input type="text" name="newFname" id="newFname" />
+            </div>
+            <div class="entry">
+                <label for="newLname">New Last Name</label>
+                <input type="text" name="newLname" id="newLname" />
+            </div>
+            <button class="button button-block updateButton"">
+                Update
+            </button>
+    </div>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
